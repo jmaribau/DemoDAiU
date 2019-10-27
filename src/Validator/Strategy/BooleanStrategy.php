@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Validator\Strategy\Strategies;
+namespace Filter\Validator\Strategy;
 
-use App\Validator\Strategy\ValidatorStrategyInterface;
+use Filter\Validator\ValidatorInterface;
 
 /**
- * Class BooleanValidatorStrategy.
+ * Class BooleanStrategy.
  */
-class BooleanValidatorStrategy implements ValidatorStrategyInterface
+class BooleanStrategy implements ValidatorInterface
 {
     /**
      * @var mixed;
@@ -17,7 +17,7 @@ class BooleanValidatorStrategy implements ValidatorStrategyInterface
     private $value;
 
     /**
-     * BooleanValidatorStrategy constructor.
+     * BooleanStrategy constructor.
      *
      * @param mixed $value
      */
@@ -29,7 +29,7 @@ class BooleanValidatorStrategy implements ValidatorStrategyInterface
     /**
      * @return bool|mixed
      */
-    public function filter()
+    public function validate()
     {
         return filter_var($this->value, FILTER_VALIDATE_BOOLEAN);
     }

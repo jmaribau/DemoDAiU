@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Sanitizer\Strategy\Strategies;
+namespace Filter\Validator\Strategy;
 
-use App\Sanitizer\Strategy\SanitizerStrategyInterface;
+use Filter\Validator\ValidatorInterface;
 
 /**
- * Class DateSanitizerStrategy.
+ * Class StringStrategy.
  */
-class DateSanitizerStrategy implements SanitizerStrategyInterface
+class StringStrategy implements ValidatorInterface
 {
     /**
      * @var mixed;
@@ -17,7 +17,7 @@ class DateSanitizerStrategy implements SanitizerStrategyInterface
     private $value;
 
     /**
-     * DateSanitizerStrategy constructor.
+     * StringStrategy constructor.
      *
      * @param mixed $value
      */
@@ -27,9 +27,9 @@ class DateSanitizerStrategy implements SanitizerStrategyInterface
     }
 
     /**
-     * @return mixed
+     * @return bool|mixed
      */
-    public function filter()
+    public function validate()
     {
         return filter_var($this->value, FILTER_UNSAFE_RAW);
     }

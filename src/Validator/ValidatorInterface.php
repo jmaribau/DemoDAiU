@@ -2,17 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Validator;
+namespace Filter\Validator;
 
 /**
- * Interface ValidatorInterface.
+ * Class Sanitizer.
  */
 interface ValidatorInterface
 {
-    /**
-     * @param array $request
-     *
-     * @return mixed
-     */
-    public static function execute(array $request);
+    public function validate();
 }

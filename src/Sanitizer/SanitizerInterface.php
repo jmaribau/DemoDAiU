@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Sanitizer;
+namespace Filter\Sanitizer;
 
 /**
  * Interface SanitizerInterface.
@@ -10,9 +10,7 @@ namespace App\Sanitizer;
 interface SanitizerInterface
 {
     /**
-     * @param array $request
-     *
      * @return mixed
      */
-    public static function execute(array $request);
+    public function sanitize();
 }

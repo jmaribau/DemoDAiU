@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Validator\Strategy\Strategies;
+namespace Filter\Validator\Strategy;
 
-use App\Validator\Strategy\ValidatorStrategyInterface;
+use Filter\Validator\ValidatorInterface;
 
 /**
- * Class ArrayOfStringsValidatorStrategy.
+ * Class ArrayOfStringsStrategy.
  */
-class ArrayOfStringsValidatorStrategy implements ValidatorStrategyInterface
+class ArrayOfStringsStrategy implements ValidatorInterface
 {
     /**
      * @var mixed;
@@ -17,7 +17,7 @@ class ArrayOfStringsValidatorStrategy implements ValidatorStrategyInterface
     private $value;
 
     /**
-     * ArrayOfStringsValidatorStrategy constructor.
+     * ArrayOfStringsStrategy constructor.
      *
      * @param mixed $value
      */
@@ -29,7 +29,7 @@ class ArrayOfStringsValidatorStrategy implements ValidatorStrategyInterface
     /**
      * @return bool|mixed
      */
-    public function filter()
+    public function validate()
     {
         return filter_var($this->value, FILTER_UNSAFE_RAW, FILTER_REQUIRE_ARRAY);
     }

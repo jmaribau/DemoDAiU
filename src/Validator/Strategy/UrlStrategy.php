@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Validator\Strategy\Strategies;
+namespace Filter\Validator\Strategy;
 
-use App\Validator\Strategy\ValidatorStrategyInterface;
+use Filter\Validator\ValidatorInterface;
 
 /**
- * Class UrlValidatorStrategy.
+ * Class UrlStrategy.
  */
-class UrlValidatorStrategy implements ValidatorStrategyInterface
+class UrlStrategy implements ValidatorInterface
 {
     /**
      * @var mixed;
@@ -17,7 +17,7 @@ class UrlValidatorStrategy implements ValidatorStrategyInterface
     private $value;
 
     /**
-     * UrlValidatorStrategy constructor.
+     * UrlStrategy constructor.
      *
      * @param mixed $value
      */
@@ -29,7 +29,7 @@ class UrlValidatorStrategy implements ValidatorStrategyInterface
     /**
      * @return bool|mixed
      */
-    public function filter()
+    public function validate()
     {
         return filter_var($this->value, FILTER_VALIDATE_URL);
     }

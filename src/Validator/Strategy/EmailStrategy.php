@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Validator\Strategy\Strategies;
+namespace Filter\Validator\Strategy;
 
-use App\Validator\Strategy\ValidatorStrategyInterface;
+use Filter\Validator\ValidatorInterface;
 
 /**
- * Class EmailValidatorStrategy.
+ * Class EmailStrategy
  */
-class EmailValidatorStrategy implements ValidatorStrategyInterface
+class EmailStrategy implements ValidatorInterface
 {
     /**
      * @var mixed;
@@ -17,7 +17,7 @@ class EmailValidatorStrategy implements ValidatorStrategyInterface
     private $value;
 
     /**
-     * EmailValidatorStrategy constructor.
+     * EmailStrategy constructor.
      *
      * @param mixed $value
      */
@@ -29,7 +29,7 @@ class EmailValidatorStrategy implements ValidatorStrategyInterface
     /**
      * @return bool|mixed
      */
-    public function filter()
+    public function validate()
     {
         return filter_var($this->value, FILTER_VALIDATE_EMAIL);
     }

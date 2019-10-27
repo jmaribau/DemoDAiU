@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Validator\Strategy\Strategies;
+namespace Filter\Validator\Strategy;
 
-use App\Validator\Strategy\ValidatorStrategyInterface;
+use Filter\Validator\ValidatorInterface;
 
 /**
- * Class IntegerValidatorStrategy.
+ * Class IntegerStrategy.
  */
-class IntegerValidatorStrategy implements ValidatorStrategyInterface
+class IntegerStrategy implements ValidatorInterface
 {
     /**
      * @var mixed;
@@ -17,7 +17,7 @@ class IntegerValidatorStrategy implements ValidatorStrategyInterface
     private $value;
 
     /**
-     * IntegerValidatorStrategy constructor.
+     * IntegerStrategy constructor.
      *
      * @param mixed $value
      */
@@ -29,7 +29,7 @@ class IntegerValidatorStrategy implements ValidatorStrategyInterface
     /**
      * @return bool|mixed
      */
-    public function filter()
+    public function validate()
     {
         return filter_var($this->value, FILTER_VALIDATE_INT);
     }

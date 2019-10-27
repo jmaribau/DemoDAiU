@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Sanitizer\Strategy\Strategies;
+namespace Filter\Sanitizer\Strategy;
 
-use App\Sanitizer\Strategy\SanitizerStrategyInterface;
+use Filter\Sanitizer\SanitizerInterface;
 
 /**
  * Class StringSanitizerStrategy.
  */
-class StringSanitizerStrategy implements SanitizerStrategyInterface
+class StringStrategy implements SanitizerInterface
 {
     /**
      * @var mixed;
@@ -29,7 +29,7 @@ class StringSanitizerStrategy implements SanitizerStrategyInterface
     /**
      * @return mixed
      */
-    public function filter()
+    public function sanitize()
     {
         return filter_var($this->value, FILTER_SANITIZE_STRING);
     }
