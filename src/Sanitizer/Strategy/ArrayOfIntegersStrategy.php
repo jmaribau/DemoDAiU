@@ -31,6 +31,6 @@ class ArrayOfIntegersStrategy implements SanitizerInterface
      */
     public function sanitize()
     {
-        return filter_var($this->value, FILTER_UNSAFE_RAW);
+        return array_map('intval', $this->value);
     }
 }
