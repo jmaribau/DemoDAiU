@@ -7,7 +7,7 @@ namespace Filter\Validator\Strategy;
 use Filter\Validator\ValidatorInterface;
 
 /**
- * Class EmailStrategy
+ * Class EmailStrategy.
  */
 class EmailStrategy implements ValidatorInterface
 {

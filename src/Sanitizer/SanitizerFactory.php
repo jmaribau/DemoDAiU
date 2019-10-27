@@ -19,7 +19,7 @@ class SanitizerFactory
     public static function build(array $input)
     {
         $strategy = preg_replace('/\s+/', '', ucwords($input['type'])).'Strategy';
-        $sanitizer = __NAMESPACE__ .'\Strategy\\'.$strategy;
+        $sanitizer = __NAMESPACE__.'\Strategy\\'.$strategy;
 
         if (class_exists($sanitizer)) {
             return new $sanitizer($input['value']);

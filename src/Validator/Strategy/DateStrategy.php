@@ -32,6 +32,7 @@ class DateStrategy implements ValidatorInterface
     public function validate()
     {
         [$year,$month,$day] = sscanf($this->value, '%4d-%2d-%2d');
-        return checkdate((int) $month, (int) $day, (int) $year) ? $this->value: false;
+
+        return checkdate((int) $month, (int) $day, (int) $year) ? $this->value : false;
     }
 }

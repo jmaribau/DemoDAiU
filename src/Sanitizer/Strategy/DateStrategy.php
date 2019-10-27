@@ -26,7 +26,7 @@ class DateStrategy implements SanitizerInterface
     /**
      * DateSanitizerStrategy constructor.
      *
-     * @param mixed $value
+     * @param mixed  $value
      * @param string $format
      */
     public function __construct($value, string $format = self::DATESTRATEGY_FORMAT)
@@ -41,9 +41,10 @@ class DateStrategy implements SanitizerInterface
     public function sanitize()
     {
         $datetime = date_create($this->value);
-        if (! $datetime) {
+        if (!$datetime) {
             return false;
         }
+
         return $datetime->format($this->format);
     }
 }

@@ -8,14 +8,15 @@ use Filter\Sanitizer\SanitizerFactory;
 use Filter\Validator\ValidatorFactory;
 
 /**
- * Class Filter
+ * Class Filter.
  */
 class Filter implements FilterInterface
 {
-    public static $exception = false;
+    private static $exception = false;
 
     /**
      * @param array $requestParameters
+     *
      * @throws Sanitizer\SanitizerFactoryException
      * @throws Validator\ValidatorFactoryException
      * @throws FilterException
@@ -34,20 +35,24 @@ class Filter implements FilterInterface
 
     /**
      * @param array $item
-     * @return bool|mixed
+     *
      * @throws Sanitizer\SanitizerFactoryException
      * @throws Validator\ValidatorFactoryException
+     *
+     * @return bool|mixed
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
     private static function check(array $item)
     {
         $validator = ValidatorFactory::build($item);
         $filter = $validator->validate();
-        if (false === $filter) {
-            self::$exception = true;
-            $sanitizer = SanitizerFactory::build($item);
-            return $sanitizer->sanitize();
+        if (false !== $filter) {
+            return $filter;
         }
-        return $filter;
+
+        self::$exception = true;
+        $sanitizer = SanitizerFactory::build($item);
+
+        return $sanitizer->sanitize();
     }
 }

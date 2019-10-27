@@ -7,7 +7,7 @@ namespace Filter\Validator\Strategy;
 use Filter\Validator\ValidatorInterface;
 
 /**
- * Class FloatStrategy
+ * Class FloatStrategy.
  */
 class FloatStrategy implements ValidatorInterface
 {

@@ -12,18 +12,19 @@ use Exception;
 class FilterException extends Exception
 {
     /**
-     * @var array $input
+     * @var array
      */
     private $input;
 
     /**
      * FilterException constructor.
-     * @param $message
-     * @param int $code
-     * @param Exception|null $previous
-     * @param array $input
+     *
+     * @param string         $message
+     * @param int            $code
+     * @param null|Exception $previous
+     * @param array          $input
      */
-    public function __construct($message, $code = 0, Exception $previous = null, $input = array('params'))
+    public function __construct($message, $code = 0, Exception $previous = null, $input = ['params'])
     {
         parent::__construct($message, $code, $previous);
         $this->input = $input;
