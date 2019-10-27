@@ -7,9 +7,9 @@ namespace App\Sanitizer\Strategy\Strategies;
 use App\Sanitizer\Strategy\SanitizerStrategyInterface;
 
 /**
- * Class BooleanSanitizerStrategy.
+ * Class UrlSanitizerStrategy.
  */
-class BooleanSanitizerStrategy implements SanitizerStrategyInterface
+class UrlSanitizerStrategy implements SanitizerStrategyInterface
 {
     /**
      * @var mixed;
@@ -17,7 +17,7 @@ class BooleanSanitizerStrategy implements SanitizerStrategyInterface
     private $value;
 
     /**
-     * BooleanSanitizerStrategy constructor.
+     * UrlSanitizerStrategy constructor.
      *
      * @param mixed $value
      */
@@ -31,6 +31,6 @@ class BooleanSanitizerStrategy implements SanitizerStrategyInterface
      */
     public function filter()
     {
-        return filter_var($this->value, FILTER_UNSAFE_RAW);
+        return filter_var($this->value, FILTER_SANITIZE_URL);
     }
 }

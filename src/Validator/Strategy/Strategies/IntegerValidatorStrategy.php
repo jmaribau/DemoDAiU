@@ -7,9 +7,9 @@ namespace App\Validator\Strategy\Strategies;
 use App\Validator\Strategy\ValidatorStrategyInterface;
 
 /**
- * Class FloatValidatorStrategy.
+ * Class IntegerValidatorStrategy.
  */
-class FloatValidatorStrategy implements ValidatorStrategyInterface
+class IntegerValidatorStrategy implements ValidatorStrategyInterface
 {
     /**
      * @var mixed;
@@ -17,7 +17,7 @@ class FloatValidatorStrategy implements ValidatorStrategyInterface
     private $value;
 
     /**
-     * FloatValidatorStrategy constructor.
+     * IntegerValidatorStrategy constructor.
      *
      * @param mixed $value
      */
@@ -31,6 +31,6 @@ class FloatValidatorStrategy implements ValidatorStrategyInterface
      */
     public function filter()
     {
-        return filter_var($this->value, FILTER_VALIDATE_FLOAT);
+        return filter_var($this->value, FILTER_VALIDATE_INT);
     }
 }
