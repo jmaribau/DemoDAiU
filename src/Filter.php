@@ -43,23 +43,49 @@ final class Filter implements FilterInterface
      * @throws FilterNotFoundException
      *
      * @return bool|mixed
-     * @SuppressWarnings(PHPMD.StaticAccess)
      */
     private function check(array $item)
     {
         try {
-            $validator = ValidatorFactory::build($item);
-            $filter = $validator->validate();
+            $filter = $this->validation($item);
             if (false !== $filter) {
                 return $filter;
             }
 
-            $this->exception = true;
-            $sanitizer = SanitizerFactory::build($item);
-
-            return $sanitizer->sanitize();
+            return $this->sanitation($item);
         } catch (ValidatorFactoryException | SanitizerFactoryException $exception) {
             throw new FilterNotFoundException($exception->getMessage(), 0, $exception);
         }
+    }
+
+    /**
+     * @param mixed[] $item
+     *
+     * @throws ValidatorFactoryException
+     *
+     * @return mixed
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
+    private function validation(array $item)
+    {
+        $validator = ValidatorFactory::build($item);
+
+        return $validator->validate();
+    }
+
+    /**
+     * @param mixed[] $item
+     *
+     * @throws SanitizerFactoryException
+     *
+     * @return mixed
+     * @SuppressWarnings(PHPMD.StaticAccess)
+     */
+    private function sanitation(array $item)
+    {
+        $this->exception = true;
+        $sanitizer = SanitizerFactory::build($item);
+
+        return $sanitizer->sanitize();
     }
 }
