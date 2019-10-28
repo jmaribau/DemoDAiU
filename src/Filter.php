@@ -27,6 +27,17 @@ final class Filter implements FilterInterface
      */
     public function __construct(array $requestParameters)
     {
+        $this->execute($requestParameters);
+    }
+
+    /**
+     * @param mixed[] $requestParameters
+     *
+     * @throws FilterException
+     * @throws FilterNotFoundException
+     */
+    private function execute(array $requestParameters): void
+    {
         $input = [];
         foreach ($requestParameters as $name => $item) {
             $input[$name] = $this->check($item);
@@ -58,8 +69,8 @@ final class Filter implements FilterInterface
             $sanitizer = SanitizerFactory::build($item);
 
             return $sanitizer->sanitize();
-        } catch (ValidatorFactoryException | SanitizerFactoryException $fe) {
-            throw new FilterNotFoundException($fe->getMessage(), 0, $fe);
+        } catch (ValidatorFactoryException | SanitizerFactoryException $exception) {
+            throw new FilterNotFoundException($exception->getMessage(), 0, $exception);
         }
     }
 }

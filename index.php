@@ -81,9 +81,9 @@ $requestParameters = [
 
 try {
     $filter = new Filter($requestParameters);
-} catch (FilterException $fe) {
+} catch (FilterException $exception) {
     echo 'Captured Exception'.PHP_EOL;
-    print_r($fe->getInput());
+    print_r($exception->getInput());
 }
 
 
@@ -97,6 +97,6 @@ $requestParameters = [
 
 try {
     $filter = new Filter($requestParameters);
-} catch (FilterNotFoundException $vfe) {
-    echo $vfe->getMessage();
+} catch (FilterNotFoundException $exception) {
+    echo $exception->getMessage();
 }
