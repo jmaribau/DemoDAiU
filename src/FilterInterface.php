@@ -9,10 +9,4 @@ namespace Filter;
  */
 interface FilterInterface
 {
-    /**
-     * @param mixed[] $request
-     *
-     * @return mixed
-     */
-    public static function execute(array $request);
 }

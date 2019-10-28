@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Filter;
 
 use Filter\Sanitizer\SanitizerFactory;
+use Filter\Sanitizer\SanitizerFactoryException;
 use Filter\Validator\ValidatorFactory;
+use Filter\Validator\ValidatorFactoryException;
 
 /**
  * Class Filter.
@@ -13,25 +15,24 @@ use Filter\Validator\ValidatorFactory;
 final class Filter implements FilterInterface
 {
     /**
-     * @var bool $exception
+     * @var bool
      */
-    private static $exception = false;
+    private $exception = false;
 
     /**
-     * @param array $requestParameters
+     * @param mixed[] $requestParameters
      *
-     * @throws Sanitizer\SanitizerFactoryException
-     * @throws Validator\ValidatorFactoryException
      * @throws FilterException
+     * @throws FilterNotFoundException
      */
-    public static function execute(array $requestParameters): void
+    public function __construct(array $requestParameters)
     {
         $input = [];
         foreach ($requestParameters as $name => $item) {
-            $input[$name] = self::check($item);
+            $input[$name] = $this->check($item);
         }
 
-        if (true === self::$exception) {
+        if (true === $this->exception) {
             throw new FilterException('Invalid data', 0, null, $input);
         }
     }
@@ -39,23 +40,26 @@ final class Filter implements FilterInterface
     /**
      * @param mixed[] $item
      *
-     * @throws Sanitizer\SanitizerFactoryException
-     * @throws Validator\ValidatorFactoryException
+     * @throws FilterNotFoundException
      *
      * @return bool|mixed
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
-    private static function check(array $item)
+    private function check(array $item)
     {
-        $validator = ValidatorFactory::build($item);
-        $filter = $validator->validate();
-        if (false !== $filter) {
-            return $filter;
+        try {
+            $validator = ValidatorFactory::build($item);
+            $filter = $validator->validate();
+            if (false !== $filter) {
+                return $filter;
+            }
+
+            $this->exception = true;
+            $sanitizer = SanitizerFactory::build($item);
+
+            return $sanitizer->sanitize();
+        } catch (ValidatorFactoryException | SanitizerFactoryException $fe) {
+            throw new FilterNotFoundException($fe->getMessage(), 0, $fe);
         }
-
-        self::$exception = true;
-        $sanitizer = SanitizerFactory::build($item);
-
-        return $sanitizer->sanitize();
     }
 }

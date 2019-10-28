@@ -6,8 +6,7 @@ namespace App;
 
 use Filter\Filter;
 use Filter\FilterException;
-use Filter\Validator\ValidatorFactoryException;
-use Filter\Sanitizer\SanitizerFactoryException;
+use Filter\FilterNotFoundException;
 use Exception;
 
 require __DIR__ . '/vendor/autoload.php';
@@ -60,7 +59,7 @@ $requestParameters = [
     ],
 ];
 
-Filter::execute($requestParameters);
+$filter = new Filter($requestParameters);
 
 $requestParameters = [
     'param_9' => [
@@ -81,7 +80,7 @@ $requestParameters = [
 ];
 
 try {
-    Filter::execute($requestParameters);
+    $filter = new Filter($requestParameters);
 } catch (FilterException $fe) {
     echo 'Captured Exception'.PHP_EOL;
     print_r($fe->getInput());
@@ -97,11 +96,7 @@ $requestParameters = [
 ];
 
 try {
-    Filter::execute($requestParameters);
-} catch (ValidatorFactoryException $vfe) {
+    $filter = new Filter($requestParameters);
+} catch (FilterNotFoundException $vfe) {
     echo $vfe->getMessage();
-} catch (SanitizerFactoryException $sfe) {
-    echo $sfe->getMessage();
-} catch (Exception $e) {
-    echo $e->getMessage();
 }
