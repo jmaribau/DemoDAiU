@@ -7,6 +7,8 @@ namespace App;
 use Filter\Filter;
 use Filter\FilterException;
 use Filter\Validator\ValidatorFactoryException;
+use Filter\Sanitizer\SanitizerFactoryException;
+use Exception;
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -98,7 +100,7 @@ try {
     Filter::execute($requestParameters);
 } catch (ValidatorFactoryException $vfe) {
     echo $vfe->getMessage();
-} catch (SanititzerFactoryException $sfe) {
+} catch (SanitizerFactoryException $sfe) {
     echo $sfe->getMessage();
 } catch (Exception $e) {
     echo $e->getMessage();

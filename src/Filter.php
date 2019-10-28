@@ -10,8 +10,11 @@ use Filter\Validator\ValidatorFactory;
 /**
  * Class Filter.
  */
-class Filter implements FilterInterface
+final class Filter implements FilterInterface
 {
+    /**
+     * @var bool $exception
+     */
     private static $exception = false;
 
     /**
@@ -34,7 +37,7 @@ class Filter implements FilterInterface
     }
 
     /**
-     * @param array $item
+     * @param mixed[] $item
      *
      * @throws Sanitizer\SanitizerFactoryException
      * @throws Validator\ValidatorFactoryException
