@@ -59,7 +59,8 @@ $requestParameters = [
     ],
 ];
 
-$filter = new Filter($requestParameters);
+$filter = new Filter();
+$filter->execute($requestParameters);
 
 $requestParameters = [
     'param_9' => [
@@ -80,7 +81,8 @@ $requestParameters = [
 ];
 
 try {
-    $filter = new Filter($requestParameters);
+    $filter = new Filter();
+    $filter->execute($requestParameters);
 } catch (FilterException $exception) {
     echo 'Captured Exception'.PHP_EOL;
     print_r($exception->getInput());
@@ -96,7 +98,8 @@ $requestParameters = [
 ];
 
 try {
-    $filter = new Filter($requestParameters);
+    $filter = new Filter();
+    $filter->execute($requestParameters);
 } catch (FilterNotFoundException $exception) {
     echo $exception->getMessage();
 }

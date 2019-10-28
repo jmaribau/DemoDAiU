@@ -25,18 +25,7 @@ final class Filter implements FilterInterface
      * @throws FilterException
      * @throws FilterNotFoundException
      */
-    public function __construct(array $requestParameters)
-    {
-        $this->execute($requestParameters);
-    }
-
-    /**
-     * @param mixed[] $requestParameters
-     *
-     * @throws FilterException
-     * @throws FilterNotFoundException
-     */
-    private function execute(array $requestParameters): void
+    public function execute(array $requestParameters): void
     {
         $input = [];
         foreach ($requestParameters as $name => $item) {
