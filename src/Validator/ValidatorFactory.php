@@ -10,7 +10,7 @@ namespace Filter\Validator;
 class ValidatorFactory
 {
     /**
-     * @param array $input
+     * @param mixed[] $input
      *
      * @throws ValidatorFactoryException
      *

@@ -9,5 +9,8 @@ namespace Filter\Validator;
  */
 interface ValidatorInterface
 {
+    /**
+     * @return bool|mixed
+     */
     public function validate();
 }

@@ -10,7 +10,7 @@ namespace Filter;
 interface FilterInterface
 {
     /**
-     * @param array $request
+     * @param mixed[] $request
      *
      * @return mixed
      */

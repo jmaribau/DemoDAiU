@@ -36,15 +36,15 @@ class DateStrategy implements SanitizerInterface
     }
 
     /**
-     * @return mixed
+     * @return bool|string
      */
     public function sanitize()
     {
         $datetime = date_create($this->value);
-        if (!$datetime) {
+        if (false === $datetime) {
             return false;
         }
 
-        return $datetime->format($this->format);
+        return date_format($datetime, $this->format);
     }
 }

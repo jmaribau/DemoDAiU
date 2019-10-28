@@ -31,7 +31,7 @@ class FilterException extends Exception
     }
 
     /**
-     * @return array
+     * @return mixed[]
      */
     public function getInput(): array
     {

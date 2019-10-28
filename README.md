@@ -195,9 +195,6 @@ Type `$ composer qa-phpstan`
 λ composer qa-phpstan
 > php vendor/phpstan/phpstan/bin/phpstan analyse src/ --level 7 -c build/phpstan.neon
 
-
-
-
  27/27 [============================] 100%
 ````
 

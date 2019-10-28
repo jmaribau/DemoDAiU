@@ -10,7 +10,7 @@ namespace Filter\Sanitizer;
 class SanitizerFactory
 {
     /**
-     * @param array $input
+     * @param mixed[] $input
      *
      * @throws SanitizerFactoryException
      *
